@@ -18,7 +18,18 @@ public class ErrorHandlerController {
 		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
 		model.addAttribute("timestamp", new Date());
 
-		return "error/arithmetic";
+		return "error/generic";
+	}
+
+	@ExceptionHandler(NumberFormatException.class)
+	public String numberFormatError(NumberFormatException ex, Model model) {
+
+		model.addAttribute("error", "Formato numérico erroneo");
+		model.addAttribute("message", ex.getMessage());
+		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+		model.addAttribute("timestamp", new Date());
+
+		return "error/generic";
 	}
 
 }

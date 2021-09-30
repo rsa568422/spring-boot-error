@@ -9,7 +9,8 @@ public class AppController {
 	@GetMapping({ "", "/", "/index", "/index/" })
 	public String index() {
 
-		Integer valor = 1/0;
+		Integer valor = 1 / 0;
+		// Integer valor = Integer.parseInt("10xaaa");
 		return "index";
 	}
 
