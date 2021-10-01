@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.bolsadeideas.springboot.error.app.errors.UserNotFoundException;
 import com.bolsadeideas.springboot.error.app.models.domain.User;
 import com.bolsadeideas.springboot.error.app.services.UserService;
 
@@ -29,6 +30,9 @@ public class AppController {
 	public String see(@PathVariable Integer id, Model model) {
 
 		User user = this.userService.findById(id);
+
+		if (user == null)
+			throw new UserNotFoundException(id.toString());
 
 		model.addAttribute("title", String.format("Detalle del usuario: %s", user.getName()));
 		model.addAttribute("user", user);
