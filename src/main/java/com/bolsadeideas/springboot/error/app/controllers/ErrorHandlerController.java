@@ -7,42 +7,35 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.bolsadeideas.springboot.error.app.errors.UserNotFoundException;
+import com.bolsadeideas.springboot.error.app.errors.UsuarioNoEncontradoException;
 
 @ControllerAdvice
 public class ErrorHandlerController {
 
 	@ExceptionHandler(ArithmeticException.class)
-	public String arithmeticError(ArithmeticException ex, Model model) {
-
+	public String aritmeticaError(ArithmeticException ex, Model model) {
 		model.addAttribute("error", "Error de aritmética");
 		model.addAttribute("message", ex.getMessage());
 		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
 		model.addAttribute("timestamp", new Date());
-
-		return "error/generic";
+		return "error/generica";
 	}
-
+	
 	@ExceptionHandler(NumberFormatException.class)
-	public String numberFormatError(NumberFormatException ex, Model model) {
-
-		model.addAttribute("error", "Formato numérico erroneo");
+	public String numeroFormatoError(NumberFormatException ex, Model model) {
+		model.addAttribute("error", "Error: Formato número inválido!");
 		model.addAttribute("message", ex.getMessage());
 		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
 		model.addAttribute("timestamp", new Date());
-
-		return "error/generic";
+		return "error/numero-formato";
 	}
-
-	@ExceptionHandler(UserNotFoundException.class)
-	public String userNotFoundError(UserNotFoundException ex, Model model) {
-
-		model.addAttribute("error", "Usuario no encontrado");
+	
+	@ExceptionHandler(UsuarioNoEncontradoException.class)
+	public String usuarioNoEncontrado(UsuarioNoEncontradoException ex, Model model) {
+		model.addAttribute("error", "Error: usuario no encontrado!");
 		model.addAttribute("message", ex.getMessage());
 		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
 		model.addAttribute("timestamp", new Date());
-
-		return "error/user-not-found";
+		return "error/usuario";
 	}
-
 }
