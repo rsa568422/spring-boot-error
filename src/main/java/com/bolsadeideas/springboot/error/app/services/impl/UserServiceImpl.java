@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.error.app.services.impl;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -30,11 +31,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findById(Integer id) {
+		return this.findByIdOptional(id).orElse(null);
+	}
+
+	@Override
+	public Optional<User> findByIdOptional(Integer id) {
 		return this.list
 				   .stream()
 				   .filter(user -> user.getId().equals(id))
-				   .findFirst()
-				   .orElse(null);
+				   .findFirst();
 	}
 
 }

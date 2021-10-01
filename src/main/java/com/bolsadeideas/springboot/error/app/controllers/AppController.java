@@ -29,10 +29,7 @@ public class AppController {
 	@GetMapping("/see/{id}")
 	public String see(@PathVariable Integer id, Model model) {
 
-		User user = this.userService.findById(id);
-
-		if (user == null)
-			throw new UserNotFoundException(id.toString());
+		User user = this.userService.findByIdOptional(id).orElseThrow(() -> new UserNotFoundException(id.toString()));
 
 		model.addAttribute("title", String.format("Detalle del usuario: %s", user.getName()));
 		model.addAttribute("user", user);
