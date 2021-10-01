@@ -2,21 +2,21 @@ package com.bolsadeideas.springboot.error.app.models.domain;
 
 public class User {
 
+	private Integer id;
+
+	private String name;
+
+	private String surname;
+
 	public User() {
 
 	}
 
-	public User(Integer id, String nombre, String apellido) {
+	public User(Integer id, String name, String surname) {
 		this.id = id;
-		this.nombre = nombre;
-		this.apellido = apellido;
+		this.name = name;
+		this.surname = surname;
 	}
-
-	private Integer id;
-
-	private String nombre;
-
-	private String apellido;
 
 	public Integer getId() {
 		return id;
@@ -26,20 +26,20 @@ public class User {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public String getSurname() {
+		return surname;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 }
